@@ -2,9 +2,11 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { AwsInfrastructureWithTypescriptStack } from '../lib/aws_infrastructure_with_typescript-stack';
+import { Tags } from 'aws-cdk-lib';
 
 const app = new cdk.App();
-new AwsInfrastructureWithTypescriptStack(app, 'AwsInfrastructureWithTypescriptStack', {
+
+const stack = new AwsInfrastructureWithTypescriptStack(app, 'AwsInfrastructureWithTypescriptStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -19,3 +21,6 @@ new AwsInfrastructureWithTypescriptStack(app, 'AwsInfrastructureWithTypescriptSt
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+
+Tags.of(stack).add('App', 'DocumentManagement');
+Tags.of(stack).add('Environment', 'Development');
